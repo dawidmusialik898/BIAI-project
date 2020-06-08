@@ -46,8 +46,7 @@ class Trainer:
 		)
 		_, acc = model.evaluate(self.dataset.testIn, self.dataset.testOut, verbose=2)
 
-		return history, acc
-	
+		return history, acc		
 
 def fileReport(history, accuracy, filename):
 	pyplot.subplot(211)
@@ -65,6 +64,9 @@ def fileReport(history, accuracy, filename):
 	pyplot.savefig(filename + '_plot.png')
 	pyplot.close()
 
+
+#-----------------main-----------------#
+
 trainer = Trainer()
 
 cifar10 = Dataset()
@@ -72,9 +74,27 @@ cifar10 = Dataset()
 cifar10 = cifar10.prepare()
 
 models = {}
-models["1VGG"] = myModels.make1VGGModel()
-models["2VGG"] = myModels.make2VGGModel()
-models["3VGG"] = myModels.make3VGGModel()
+
+
+#basic models
+models["1VGG"] = myModels.BaseModels.make1VGGModel();
+models["2VGG"] = myModels.BaseModels.make2VGGModel();
+models["3VGG"] = myModels.BaseModels.make3VGGModel();
+
+#basic models with dropouts
+models["1VGG"] = myModels.Dropout_Models.make1VGGModel();
+models["2VGG"] = myModels.Dropout_Models.make2VGGModel();
+models["3VGG"] = myModels.Dropout_Models.make3VGGModel();
+
+#basic models with weight decay
+models["1VGG"] = myModels.WeightDecay_Models.make1VGGModel();
+models["2VGG"] = myModels.WeightDecay_Models.make2VGGModel();
+models["3VGG"] = myModels.WeightDecay_Models.make3VGGModel();
+
+#basic models with weight decay and dropout
+models["1VGG"] = myModels.WeighrDecay_Dropout_Models.make1VGGModel();
+models["2VGG"] = myModels.WeighrDecay_Dropout_Models.make2VGGModel();
+models["3VGG"] = myModels.WeighrDecay_Dropout_Models.make3VGGModel();
 
 datasets = {}
 datasets["base"] = cifar10
