@@ -34,7 +34,7 @@ class Trainer:
 		self.dataset = dataset
 	
 	def test(self, model):
-		callback = keras.callbacks.EarlyStopping(monitor='loss', patience=3)
+		callback = keras.callbacks.EarlyStopping(monitor='val_loss', patience=3)
 		history = model.fit(
 			self.dataset.trainIn,
 			self.dataset.trainOut,
