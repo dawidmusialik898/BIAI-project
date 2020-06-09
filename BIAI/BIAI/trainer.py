@@ -77,24 +77,24 @@ models = {}
 
 
 #basic models
-models["1VGG"] = myModels.BaseModels.make1VGGModel();
-models["2VGG"] = myModels.BaseModels.make2VGGModel();
-models["3VGG"] = myModels.BaseModels.make3VGGModel();
+models["base_1VGG"] = myModels.BaseModels.make1VGGModel()
+models["base_2VGG"] = myModels.BaseModels.make2VGGModel()
+models["base_3VGG"] = myModels.BaseModels.make3VGGModel()
 
 #basic models with dropouts
-models["1VGG"] = myModels.Dropout_Models.make1VGGModel();
-models["2VGG"] = myModels.Dropout_Models.make2VGGModel();
-models["3VGG"] = myModels.Dropout_Models.make3VGGModel();
+models["dropout_1VGG"] = myModels.Dropout_Models.make1VGGModel()
+models["dropout_2VGG"] = myModels.Dropout_Models.make2VGGModel()
+models["dropout_3VGG"] = myModels.Dropout_Models.make3VGGModel()
 
 #basic models with weight decay
-models["1VGG"] = myModels.WeightDecay_Models.make1VGGModel();
-models["2VGG"] = myModels.WeightDecay_Models.make2VGGModel();
-models["3VGG"] = myModels.WeightDecay_Models.make3VGGModel();
+models["decay_1VGG"] = myModels.WeightDecay_Models.make1VGGModel()
+models["decay_2VGG"] = myModels.WeightDecay_Models.make2VGGModel()
+models["decay_3VGG"] = myModels.WeightDecay_Models.make3VGGModel()
 
 #basic models with weight decay and dropout
-models["1VGG"] = myModels.WeighrDecay_Dropout_Models.make1VGGModel();
-models["2VGG"] = myModels.WeighrDecay_Dropout_Models.make2VGGModel();
-models["3VGG"] = myModels.WeighrDecay_Dropout_Models.make3VGGModel();
+models["dropout_decay_1VGG"] = myModels.WeighrDecay_Dropout_Models.make1VGGModel()
+models["dropout_decay_2VGG"] = myModels.WeighrDecay_Dropout_Models.make2VGGModel()
+models["dropout_decay_3VGG"] = myModels.WeighrDecay_Dropout_Models.make3VGGModel()
 
 datasets = {}
 datasets["base"] = cifar10

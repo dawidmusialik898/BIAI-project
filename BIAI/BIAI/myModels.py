@@ -5,13 +5,16 @@ from tensorflow.keras import regularizers
 from abc import ABC, abstractmethod
 
 class ModelInterface(ABC):
+	@staticmethod
 	@abstractmethod
 	def make1VGGModel():
 		pass
 
+	@staticmethod
 	@abstractmethod
 	def make2VGGModel():
 		pass
+	@staticmethod
 	@abstractmethod
 	def make3VGGModel():
 		pass
@@ -19,6 +22,7 @@ class ModelInterface(ABC):
 #Basic models
 class BaseModels(ModelInterface):
 
+	@staticmethod
 	def make1VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(32, 32, 3)))
@@ -32,6 +36,7 @@ class BaseModels(ModelInterface):
 		model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 		return model
 	
+	@staticmethod
 	def make2VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(32, 32, 3)))
@@ -48,6 +53,7 @@ class BaseModels(ModelInterface):
 		model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 		return model
 	
+	@staticmethod
 	def make3VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(32, 32, 3)))
@@ -69,6 +75,7 @@ class BaseModels(ModelInterface):
 
 #Models with dropout
 class Dropout_Models(ModelInterface):
+	@staticmethod
 	def make1VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(32, 32, 3)))
@@ -83,6 +90,7 @@ class Dropout_Models(ModelInterface):
 		model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 		return model
 	
+	@staticmethod
 	def make2VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(32, 32, 3)))
@@ -101,6 +109,7 @@ class Dropout_Models(ModelInterface):
 		model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 		return model
 	
+	@staticmethod
 	def make3VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(32, 32, 3)))
@@ -126,6 +135,7 @@ class Dropout_Models(ModelInterface):
 
 #Models with weight decay
 class WeightDecay_Models(ModelInterface):
+	@staticmethod
 	def make1VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same',kernel_regularizer=regularizers.l2(0.001), input_shape=(32, 32, 3)))
@@ -139,6 +149,7 @@ class WeightDecay_Models(ModelInterface):
 		model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 		return model
 	
+	@staticmethod
 	def make2VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same',kernel_regularizer=regularizers.l2(0.001), input_shape=(32, 32, 3)))
@@ -155,6 +166,7 @@ class WeightDecay_Models(ModelInterface):
 		model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 		return model
 	
+	@staticmethod
 	def make3VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', kernel_regularizer=regularizers.l2(0.001), input_shape=(32, 32, 3)))
@@ -177,6 +189,7 @@ class WeightDecay_Models(ModelInterface):
 
 #Models with weight decay and dropout
 class WeighrDecay_Dropout_Models(ModelInterface):
+	@staticmethod
 	def make1VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same',kernel_regularizer=regularizers.l2(0.001), input_shape=(32, 32, 3)))
@@ -191,6 +204,7 @@ class WeighrDecay_Dropout_Models(ModelInterface):
 		model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 		return model
 	
+	@staticmethod
 	def make2VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same',kernel_regularizer=regularizers.l2(0.001), input_shape=(32, 32, 3)))
@@ -209,6 +223,7 @@ class WeighrDecay_Dropout_Models(ModelInterface):
 		model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 		return model
 	
+	@staticmethod
 	def make3VGGModel():
 		model = keras.models.Sequential()
 		model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', kernel_regularizer=regularizers.l2(0.001), input_shape=(32, 32, 3)))
