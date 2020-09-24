@@ -4,6 +4,7 @@ matplotlib.use('agg')
 from matplotlib import pyplot
 import tensorflow as tf
 from tensorflow import keras
+from datetime import datetime
 from tensorflow.keras.utils import to_categorical
 
 import myModels
@@ -66,45 +67,50 @@ def fileReport(history, accuracy, filename):
 
 
 #-----------------main-----------------#
+def main():
+	trainer = Trainer()
 
-trainer = Trainer()
+	cifar10 = Dataset()
+	(cifar10.trainIn, cifar10.trainOut), (cifar10.testIn, cifar10.testOut) = keras.datasets.cifar10.load_data()
+	cifar10 = cifar10.prepare()
 
-cifar10 = Dataset()
-(cifar10.trainIn, cifar10.trainOut), (cifar10.testIn, cifar10.testOut) = keras.datasets.cifar10.load_data()
-cifar10 = cifar10.prepare()
+	models = {}
 
-models = {}
+	#basic models
+	models["base_1VGG"] = myModels.BaseModels.make1VGGModel()
+	models["base_2VGG"] = myModels.BaseModels.make2VGGModel()
+	models["base_3VGG"] = myModels.BaseModels.make3VGGModel()
 
+	#basic models with dropouts
+	models["dropout_1VGG"] = myModels.Dropout_Models.make1VGGModel()
+	models["dropout_2VGG"] = myModels.Dropout_Models.make2VGGModel()
+	models["dropout_3VGG"] = myModels.Dropout_Models.make3VGGModel()
 
-#basic models
-models["base_1VGG"] = myModels.BaseModels.make1VGGModel()
-models["base_2VGG"] = myModels.BaseModels.make2VGGModel()
-models["base_3VGG"] = myModels.BaseModels.make3VGGModel()
+	#basic models with weight decay
+	models["decay_1VGG"] = myModels.WeightDecay_Models.make1VGGModel()
+	models["decay_2VGG"] = myModels.WeightDecay_Models.make2VGGModel()
+	models["decay_3VGG"] = myModels.WeightDecay_Models.make3VGGModel()
 
-#basic models with dropouts
-models["dropout_1VGG"] = myModels.Dropout_Models.make1VGGModel()
-models["dropout_2VGG"] = myModels.Dropout_Models.make2VGGModel()
-models["dropout_3VGG"] = myModels.Dropout_Models.make3VGGModel()
+	#basic models with weight decay and dropout
+	models["dropout_decay_1VGG"] = myModels.WeighrDecay_Dropout_Models.make1VGGModel()
+	models["dropout_decay_2VGG"] = myModels.WeighrDecay_Dropout_Models.make2VGGModel()
+	models["dropout_decay_3VGG"] = myModels.WeighrDecay_Dropout_Models.make3VGGModel()
 
-#basic models with weight decay
-models["decay_1VGG"] = myModels.WeightDecay_Models.make1VGGModel()
-models["decay_2VGG"] = myModels.WeightDecay_Models.make2VGGModel()
-models["decay_3VGG"] = myModels.WeightDecay_Models.make3VGGModel()
+	datasets = {}
+	datasets["base"] = cifar10
 
-#basic models with weight decay and dropout
-models["dropout_decay_1VGG"] = myModels.WeighrDecay_Dropout_Models.make1VGGModel()
-models["dropout_decay_2VGG"] = myModels.WeighrDecay_Dropout_Models.make2VGGModel()
-models["dropout_decay_3VGG"] = myModels.WeighrDecay_Dropout_Models.make3VGGModel()
+	trainer.epochs = 100
+	date = datetime.now().strftime("%Y-%m-%d_%H-%M")
+	for datasetName, dataset in datasets.items():
+		trainer.assignDataset(dataset)
+		for modelName, model in models.items():
+			print(f"training {modelName} model on {datasetName} dataset")
+			print(f"./models/{date}_{modelName}.h5")
+			history, acc = trainer.test(model)
+			fileReport(history, acc, f"{datasetName}_{modelName}")
+			print(f"finished training {modelName} model on {datasetName} dataset")
+			print("accuracy %.3f" % (acc * 100.0))
+			model.save(f"./models/{date}/{modelName}_{datasetName}.h5")
 
-datasets = {}
-datasets["base"] = cifar10
-
-trainer.epochs = 100
-for datasetName, dataset in datasets.items():
-	trainer.assignDataset(dataset)
-	for modelName, model in models.items():
-		print(f"training {modelName} model on {datasetName} dataset")
-		history, acc = trainer.test(model)
-		fileReport(history, acc, f"{datasetName}_{modelName}")
-		print(f"finished training {modelName} model on {datasetName} dataset")
-		print("accuracy %.3f" % (acc * 100.0))
+if __name__=="__main__":
+	main()
