@@ -110,7 +110,7 @@ def main():
 			fileReport(history, acc, f"{datasetName}_{modelName}")
 			print(f"finished training {modelName} model on {datasetName} dataset")
 			print("accuracy %.3f" % (acc * 100.0))
-			model.save(f"./models/{date}/{modelName}_{datasetName}.h5")
+			model.save(f"./models/{date}_{modelName}_{datasetName}.h5")
 
 if __name__=="__main__":
 	main()
