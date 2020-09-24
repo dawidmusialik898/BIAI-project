@@ -35,11 +35,8 @@ def classify(args):
 
     imageArray = keras.preprocessing.image.img_to_array(image) * (1.0 / 255.0)
     imageArray = imageArray.reshape((1, imageArray.shape[0], imageArray.shape[1], imageArray.shape[2]))
-    print(imageArray.dtype)
-    print(imageArray.shape)
 
     prediction = model.predict(imageArray)
-    print(prediction)
     label = predictionToLabel(prediction)
     print(label)
 
