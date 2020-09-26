@@ -1,0 +1,20 @@
+Model: weightDecay_l1_0.006_3VGG     accuracy 35.550
+Model: weightDecay_l2_0.006_3VGG     accuracy 74.370
+Model: weightDecay_l1l2_0.006_3VGG     accuracy 31.420
+Model: weightDecay_l1_0.007_3VGG     accuracy 33.990
+Model: weightDecay_l2_0.007_3VGG     accuracy 72.170
+Model: weightDecay_l1l2_0.007_3VGG     accuracy 30.030
+Model: weightDecay_l1_0.008_3VGG     accuracy 32.580
+Model: weightDecay_l2_0.008_3VGG     accuracy 70.540
+Model: weightDecay_l1l2_0.008_3VGG     accuracy 29.350
+Model: weightDecay_l1_0.009_3VGG     accuracy 33.460
+Model: weightDecay_l2_0.009_3VGG     accuracy 70.450
+Model: weightDecay_l1l2_0.009_3VGG     accuracy 10.000
+Model: weightDecay_l1_0.01_3VGG     accuracy 30.890
+Model: weightDecay_l2_0.01_3VGG     accuracy 71.430
+Model: weightDecay_l1l2_0.01_3VGG     accuracy 10.000
+Model: weightDecay_l1_0.02_3VGG     accuracy 10.000
+Model: weightDecay_l2_0.02_3VGG     accuracy 54.430
+Model: weightDecay_l1l2_0.02_3VGG     accuracy 10.000
+
+Najlepszy wykres ma: l2 0.006 

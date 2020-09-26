@@ -1,0 +1,18 @@
+loss: 0.6400 - accuracy: 0.7885
+finished training dropout_3VGG_0.1 model on base dataset
+
+loss: 0.6358 - accuracy: 0.7839
+finished training dropout_3VGG_0.2 model on base dataset
+
+loss: 0.6369 - accuracy: 0.7810
+finished training dropout_3VGG_0.3 model on base dataset
+
+loss: 0.7306 - accuracy: 0.7417
+finished training dropout_3VGG_0.4 model on base dataset
+
+loss: 1.1599 - accuracy: 0.5811
+finished training dropout_3VGG_0.5 model on base dataset
+
+loss: 2.2408 - accuracy: 0.2144
+finished training dropout_3VGG_0.6 model on base dataset
+
